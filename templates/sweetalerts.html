@@ -1,0 +1,16 @@
+<!-- Errors handlihg using js library called sweetalert2 -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<script>
+        Swal.fire({
+            title:"{{ category.title() }}!",
+            text: "{{ message }}",
+            icon: "{{ category }}"
+        })
+</script>
+{% endfor %}
+{% endif %}
+{% endwith %}

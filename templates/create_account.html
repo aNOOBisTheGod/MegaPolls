@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/main.css">
+</head>
+<body>
+    {% include "sweetalerts.html" %}
+    <div class="account-creator">
+        <h1>Create account</h1>
+    <form method="POST">
+        <a>Insert password:</a>
+        <input name="password">
+        <br>
+        <a>Insert username:</a>
+        <input name="username">
+        <button type="submit" name="create_account" class="simple-button">Create Account</button>
+    </form>
+    </div>
+    <div class="account-creator">
+        <h1>Log in account</h1>
+        <form method="POST">
+            <a>Insert username:</a>
+            <input name="username_login"><br>
+            <a>Insert password:</a>
+            <input name="password_login">
+            <button type="submit" name="login"  class="simple-button">Log Me In</button>
+        </form>
+        </div>
+    
+</body>
+</html>
+<script type="text/javascript" src="../static/js/script.js"></script>

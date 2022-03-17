@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Account</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/main.css">
+</head>
+<body>
+    <section>
+    {% if not isLocked %}
+    <h1>Here is a poll {{poll['title']}}!</h1>
+    <form method="POST">
+        {% for i in poll['clauses']%}
+        <li class="pollVoter">
+            <input type="checkbox" value="{{i}}", name="answer">{{i}}
+        </li>
+        {% endfor %}
+        <input type="submit">
+    </form>
+    {% else %}
+    <h1> You've already voted in here!<h1>
+    {% endif %}
+</section>
+</body>
+</html>
