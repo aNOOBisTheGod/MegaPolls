@@ -5,6 +5,7 @@ import database.polls
 import database.users
 from utils.exceptions import *
 import os.path
+import json
 
 
 
@@ -104,9 +105,8 @@ if __name__ == "__main__":
     if os.path.isfile('key.json'):
         cred = credentials.Certificate("key.json")
     else:
-        os.system('touch key.json')
-        with open('key.json', 'w') as f:
-            f.write(os.environ.get('PRIVATE', None))
+        creds_dict = json.loads(os.environ.get(("PRIVATE")))
+        creds = credentials.Certificate(creds_dict)
     firebase_admin.initialize_app(cred)
     dbUser = database.users.DatabaseUser()
     dbPolls = database.polls.DatabasePoll()
