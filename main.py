@@ -99,6 +99,7 @@ def createpollpage():
 
 
 if __name__ == "__main__":
+    """here is the start of the program"""
     cred = credentials.Certificate("key.json")
     firebase_admin.initialize_app(cred)
     dbUser = database.users.DatabaseUser()
