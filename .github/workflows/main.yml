@@ -1,0 +1,19 @@
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+env:
+  PRIVATE : ${{ secrets.PRIVATE }}
+name: "Build & Release"
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+    steps:
+      - run: |
+          touch key.json
+          echo $PRIVATE >> key.json
+          cat  key.json
