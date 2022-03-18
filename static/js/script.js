@@ -34,10 +34,16 @@ class Particle {
 	}
 
 	draw(){
+		ctx.save()
 		ctx.beginPath();
+		ctx.shadowColor = '#f3214f';
+		ctx.shadowOffsetX = 0;
+		ctx.shadowOffsetY = 0;
+		ctx.shadowBlur = 50;
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, true);
         ctx.fillStyle = "#444";
         ctx.fill();
+		ctx.restore();
 	}
 	update(){
 		if (this.x > canvas.width || this.x < 0){
