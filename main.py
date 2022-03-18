@@ -4,7 +4,8 @@ from firebase_admin import credentials
 import database.polls
 import database.users
 from utils.exceptions import *
-import json
+import os.path
+
 
 
 app = Flask(__name__)
@@ -100,7 +101,12 @@ def createpollpage():
 
 if __name__ == "__main__":
     """here is the start of the program"""
-    cred = credentials.Certificate("key.json")
+    if os.path.isfile('key.json'):
+        cred = credentials.Certificate("key.json")
+    else:
+        os.system('touch key.json')
+        with open('key.json', 'w') as f:
+            f.write(os.environ.get('PRIVATE', None))
     firebase_admin.initialize_app(cred)
     dbUser = database.users.DatabaseUser()
     dbPolls = database.polls.DatabasePoll()
