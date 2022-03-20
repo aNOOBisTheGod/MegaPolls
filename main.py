@@ -71,7 +71,6 @@ def createaccountpage():
                 else:
                     raise UserException('User not found! Make sure username and password are correct')
         except Exception as e:
-            raise e
             flash(f"{e}", "error")
             return render_template('create_account.html')
 
