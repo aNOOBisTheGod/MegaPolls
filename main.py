@@ -107,7 +107,10 @@ if __name__ == "__main__":
     else:
         creds_dict = json.loads(os.environ.get(("PRIVATE")))
         creds = credentials.Certificate(creds_dict)
-    firebase_admin.initialize_app(cred)
+    try:
+        firebase_admin.initialize_app(cred)
+    except Exception as e:
+        print(e)
     dbUser = database.users.DatabaseUser()
     dbPolls = database.polls.DatabasePoll()
     app.run(debug=True)
