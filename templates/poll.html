@@ -18,7 +18,7 @@
     <h2>Choose something:</h2>
     <form method="POST">
         <ol>
-        {% for i in poll['clauses']%}
+        {% for i in poll['options']%}
         <li class="pollVoter">
             {% if poll['isUnique'] %}
                 <input type="radio" value="{{i}}" name="answer" class="custom-checkbox">{{i}}

@@ -1,40 +1,65 @@
 from firebase_admin import firestore
-import database.users
+from .db_session import SqlAlchemyBase
+import sqlalchemy
+from database import db_session
+import ast
+import sqlalchemy.orm as orm
+from database.users import User
+from sqlalchemy import update
 
-class DatabasePoll:
-    def __init__(self) -> None:
-        self.db = firestore.client()
-        self.usersDB = database.users.DatabaseUser()
-        
-    def create_poll(self, title: str, isUnique: bool, clauses: list, userId: str):
-        dictionary = {
-            'title': title,
-            'isUnique': isUnique,
-            'clauses': clauses,
-            'createdBy': userId,
-            'whoVoted': []
-            }
-        for i in clauses: 
-            dictionary[i] = 0
-        doc_ref = self.db.collection('polls').add(
-            dictionary
-        )
-        return doc_ref[1].id
-        
-        
-    def loadPoll(self, pollId):
-        check = self.db.collection('polls').stream()
-        for i in check:
-            if i.id == pollId:
-                return i.to_dict()
-            
-    def updatePoll(self, pollId : str, answers: list, username: str):
-        uid = self.usersDB.getUserId(username)
-        poll_ref = self.db.collection('polls').document(pollId)
-        poll = self.loadPoll(pollId)
-        poll['whoVoted'].append(uid)
-        for i in answers:
-            poll[i] += 1
-        poll_ref.set(
-            poll, merge=True
-        )
+
+class Poll(SqlAlchemyBase):
+    __tablename__ = "polls"
+    id = sqlalchemy.Column(sqlalchemy.Integer,
+                           primary_key=True, autoincrement=True)
+    title = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    creator = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    unique = sqlalchemy.Column(sqlalchemy.Boolean, nullable=True)
+    whoVoted = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    options = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    
+def createPoll(db_sess, title, creatorId, unique, options):
+    js = dict()
+    for option in options:
+        js[option] = 0
+    poll = Poll()
+    poll.title = title
+    poll.creator = creatorId
+    poll.options = str(js)
+    poll.unique = unique
+    poll.whoVoted = ''
+    db_sess.add(poll)
+    db_sess.commit()
+    return poll.id
+    
+def retreivePoll(db_sess, id):
+    poll = db_sess.query(Poll).filter(Poll.id == id).first()
+    return poll
+
+def getPollJson(db_sess, id):
+    poll = retreivePoll(db_sess, id)
+    return {
+        'title': poll.title,
+        'options': ast.literal_eval(poll.options),
+        'isUnique': poll.unique,
+        'whoVoted': list(map(int, poll.whoVoted.split()))
+    }
+    
+    
+def voteInPoll(db_sess, pollId, uid, options):
+    poll = retreivePoll(db_sess, pollId)
+    votesList = poll.whoVoted
+    votesList = votesList.split()
+    votesList.append(uid)
+    print(votesList)
+    votesList = ' '.join(list(map(str, votesList)))
+    options = ast.literal_eval(poll.options)
+    for option in options:
+        options[option] += 1
+    poll.options = str(options)
+    poll.whoVoted = votesList
+    db_sess.commit()
+    
+    
+
+    

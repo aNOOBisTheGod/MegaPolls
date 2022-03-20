@@ -1,35 +1,57 @@
-from firebase_admin import firestore
+from enum import unique
+import sqlalchemy
+import sqlite3
+from utils.exceptions import UserException
 
-class DatabaseUser:
-    def __init__(self) -> None:
-        self.db = firestore.client()
-        
-    def create_user(self, password: str, username: str):
-        """function that creates user"""
-        check = self.db.collection('users').where('username', '==', username).stream()
-        for i in check:
-            if password != i.to_dict()['password']:
-                return False
-            return True
-        self.db.collection('users').add({'password': password, 'username': username, 'pollsCreated': []})
+from .db_session import SqlAlchemyBase
+
+
+class User(SqlAlchemyBase):
+    __tablename__ = 'users'
+    id = sqlalchemy.Column(sqlalchemy.Integer,
+                           primary_key=True, autoincrement=True)
+    username = sqlalchemy.Column(sqlalchemy.String, nullable=True, unique=True)
+    password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    pollsCreated = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+
+
+def checkUser(username, password):
+    try:
+        connection = sqlite3.connect('db/data.db')
+        cursor = connection.cursor()
+        query = f"""SELECT * FROM USERS WHERE username = '{username}' AND password = '{password}' """
+        res = cursor.execute(query).fetchone()
+    except Exception as e:
+        print(e)
+        return False
+    if res != None:
         return True
+    else:
+        return False
+    
 
-    def checkUser(self, username: str, password: str):
-        check = self.db.collection('users').where('username', '==', username).stream()
-        for i in check:
-            if password != i.to_dict()['password']:
-                return False
-            return True
-
-    def getUserId(self, username: str):
-        check = self.db.collection('users').where('username', '==', username).stream()
-        for i in check:
-            return i.id
-        
-    def updateUser(self, uid: str, pollId: str):
-        user_ref = self.db.collection('users').document(uid)
-        updatedUser = user_ref.get().to_dict()
-        updatedUser['pollsCreated'].append(pollId)
-        user_ref.set(
-            updatedUser, merge=True
-        )
+def getUserId(username, password):
+    connection = sqlite3.connect('db/data.db')
+    cursor = connection.cursor()
+    query = f"""SELECT id FROM USERS WHERE username = '{username}' AND password = '{password}'"""
+    res = cursor.execute(query).fetchone()
+    if res != None:
+        return res[0]
+    else:
+        raise UserException('404 user not found')
+    
+def updateUser(username, password, newPoll):
+    connection = sqlite3.connect('db/data.db')
+    cursor = connection.cursor()    
+    query = f"""SELECT pollsCreated FROM USERS WHERE username = '{username}' AND password = '{password}'"""
+    res = cursor.execute(query).fetchone()
+    print(res)
+    polls = res[0].split()
+    print(polls)
+    polls.append(newPoll)
+    print(polls)
+    polls = ' '.join(list(map(str, polls)))
+    print(polls)
+    query = f"""UPDATE USERS SET pollsCreated = "{polls}" WHERE password = '{password}' AND username = '{username}'"""
+    cursor.execute(query)
+    connection.commit()
