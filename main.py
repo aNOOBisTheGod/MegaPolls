@@ -7,6 +7,8 @@ import os.path
 import json
 from database import db_session
 import database.users
+import logging
+import sys
 
 
 
@@ -69,6 +71,7 @@ def createaccountpage():
                 else:
                     raise UserException('User not found! Make sure username and password are correct')
         except Exception as e:
+            raise e
             flash(f"{e}", "error")
             return render_template('create_account.html')
 
@@ -121,4 +124,6 @@ if __name__ == "__main__":
     """here is the start of the program"""
     db_session.global_init("db/data.db")
     db_sess = db_session.create_session()
+    app.logger.addHandler(logging.StreamHandler(sys.stdout))
+    app.logger.setLevel(logging.ERROR)
     app.run(debug=True)
