@@ -12,17 +12,17 @@ let mouse = {
 	radius: (canvas.height / 80) * (canvas.width / 80)
 }
 
-window.addEventListener('click',
-	function(event){
-		x = event.pageX;
-		y = event.pageY;
-		let directionX = Math.random() * 5 - 2.5;
-		let directionY = Math.random() * 5 - 2.5;
-		let size = 10;
-		particlesArray.push(new Particle(x, y, directionX, directionY, size));
-		particlesArray.splice(0, 1);
-	}
-)
+// window.addEventListener('click',
+// 	function(event){
+// 		x = event.pageX;
+// 		y = event.pageY;
+// 		let directionX = Math.random() * 5 - 2.5;
+// 		let directionY = Math.random() * 5 - 2.5;
+// 		let size = 10;
+// 		particlesArray.push(new Particle(x, y, directionX, directionY, size));
+// 		particlesArray.splice(0, 1);
+// 	}
+// )
 
 class Particle {
 	constructor(x, y, directionX, directionY, size){
