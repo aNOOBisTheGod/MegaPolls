@@ -31,7 +31,8 @@
         <button type="submit" class="simple-button">Answer</button>
     </form>
     {% else %}
-    <h1> You've already voted in here!<h1>
+    <h1>You've already voted here. Here are stats:</h1>
+    <img src="{{poll['chart_url']}}">
     {% endif %}
 </section>
 </body>
