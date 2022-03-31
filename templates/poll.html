@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Account</title>
+    <title>Poll</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
@@ -34,6 +34,8 @@
     <h1>You've already voted here. Here are stats:</h1>
     <img src="{{poll['chart_url']}}">
     {% endif %}
+    <canvas id="canvas1" width="100%" height="100%"></canvas>
 </section>
 </body>
 </html>
+<script type="text/javascript" src="../static/js/script.js"></script>
