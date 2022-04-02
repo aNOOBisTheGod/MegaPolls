@@ -51,7 +51,8 @@ section {
 footer {
     background-color: rgba(24, 24, 24, 0.5);
     padding: 10vh;
-    color:rgb(146, 146, 146)
+    color:rgb(146, 146, 146);
+    backdrop-filter: blur(10px);
 }
 
 .navbar {
@@ -83,18 +84,15 @@ input {
 }
 
 .account-creator {
-    margin: auto;
+  margin: auto;
   width: 50%;
-  border: 3px solid white;
   padding: 10px;
+  background-color: #33333342;
   border-radius: 10px;
   margin-top: 30vh;
   padding: 10vh;
-  
-}
-
-.account-creator {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
+  backdrop-filter: blur(10px);
 }
 
 .small-title {
@@ -226,4 +224,11 @@ input[type="checkbox"]:checked + .usethis {
 .list {
     margin-top: 3vh;
     margin-bottom: 3vh;
+}
+
+.text-blur-wrapper{
+    backdrop-filter: blur(10px);
+    display: inline-block;
+    padding: 10vh;
+    border-radius: 20px;
 }

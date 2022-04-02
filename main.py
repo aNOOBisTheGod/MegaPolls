@@ -15,6 +15,8 @@ import sys
 app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.secret_key = 'you wont hack this website cause youre stupid'  
+db_session.global_init("db/data.db")
+db_sess = db_session.create_session()
 
 @app.route('/', methods=['POST', 'GET'])
 def mainpage():
@@ -44,7 +46,6 @@ def createaccountpage():
     if request.method == "POST":
         try:
             if "create_account" in request.form:
-                print('creating add')
                 password = request.form['password']
                 username = request.form['username']
                 if len(username) < 6 or len(password) < 6:
@@ -62,7 +63,6 @@ def createaccountpage():
             else:
                 username = request.form['username_login']
                 password = request.form['password_login']
-                print(username, password, database.users.checkUser(username, password))
                 if database.users.checkUser(username, password):
                     resp = make_response(redirect(url_for('accountpage')))
                     resp.set_cookie('username', username)
@@ -121,8 +121,6 @@ def createpollpage():
 
 if __name__ == "__main__":
     """here is the start of the program"""
-    db_session.global_init("db/data.db")
-    db_sess = db_session.create_session()
     app.logger.addHandler(logging.StreamHandler(sys.stdout))
     app.logger.setLevel(logging.ERROR)
     app.run(debug=True)
