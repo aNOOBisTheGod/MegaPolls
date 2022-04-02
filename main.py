@@ -101,7 +101,8 @@ def pollpage():
 def createpollpage():
     if request.method == "POST":
         try:
-            unique = True if request.form.get('isUnique') is None else False
+            unique = False if request.form.get('isUnique') is None else True
+            print(request.form.get('isUnique'))
             title = request.form.get('title')
             clauses=request.form.getlist('clause')
             username = request.cookies.get('username')
