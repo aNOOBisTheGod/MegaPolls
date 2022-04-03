@@ -26,25 +26,9 @@ jobs:
           name: Windows_qwiklabs
           path: dist/main.exe
 
-      - name: create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.event.head_commit.message }}
-          release_name: ${{ github.event.head_commit.message }}
-          body: |
-            Test Release v1.0.0
-          draft: false
-          prerelease: false
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{steps.create_release.outputs.upload_url}}
-          asset_path: dist/main.exe
-          asset_name: website.exe
-          asset_content_type: application/zip
+          artifacts: "dist/*"
+          tag: v1.1.${{ github.run_number }}
+          token: ${{ secrets.TOKEN }}
