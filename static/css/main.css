@@ -227,8 +227,38 @@ input[type="checkbox"]:checked + .usethis {
 }
 
 .text-blur-wrapper{
+    background-color: #292929b4;
     backdrop-filter: blur(10px);
     display: inline-block;
     padding: 10vh;
     border-radius: 20px;
+}
+.label-load-file {
+    cursor: pointer;
+}
+
+.help-loading{
+    display: none;
+    transition: .3s;
+    position: absolute;
+    width: auto;
+    background-color: rgba(65, 65, 65, 0.411);
+    padding: 10px;
+    border-radius: 5px;
+    backdrop-filter: blur(10px);
+}
+
+.label-load-file:hover .help-loading{
+    display: flex;
+    transition: .3s;
+    
+}
+
+div {
+    background-color: rgba(0, 0, 0, 0.671);
+}
+h3 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
 }

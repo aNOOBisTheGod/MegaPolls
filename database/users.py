@@ -45,13 +45,9 @@ def updateUser(username, password, newPoll):
     cursor = connection.cursor()    
     query = f"""SELECT pollsCreated FROM USERS WHERE username = '{username}' AND password = '{password}'"""
     res = cursor.execute(query).fetchone()
-    print(res)
     polls = res[0].split()
-    print(polls)
     polls.append(newPoll)
-    print(polls)
     polls = ' '.join(list(map(str, polls)))
-    print(polls)
     query = f"""UPDATE USERS SET pollsCreated = "{polls}" WHERE password = '{password}' AND username = '{username}'"""
     cursor.execute(query)
     connection.commit()

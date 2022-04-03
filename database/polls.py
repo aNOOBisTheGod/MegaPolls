@@ -1,11 +1,6 @@
-from firebase_admin import firestore
 from .db_session import SqlAlchemyBase
 import sqlalchemy
-from database import db_session
 import ast
-import sqlalchemy.orm as orm
-from database.users import User
-from sqlalchemy import update
 
 
 class Poll(SqlAlchemyBase):

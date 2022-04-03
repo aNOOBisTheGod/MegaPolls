@@ -1,10 +1,6 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for, flash
-import firebase_admin
-from firebase_admin import credentials
 from database.polls import createPoll, getPollJson, voteInPoll
 from utils.exceptions import *
-import os.path
-import json
 from database import db_session
 import database.users
 import logging
@@ -20,6 +16,7 @@ db_sess = db_session.create_session()
 
 @app.route('/', methods=['POST', 'GET'])
 def mainpage():
+    # flash(f"312", "error")
     return render_template('index.html')
 
 @app.route('/account', methods=['POST', 'GET'])
@@ -34,7 +31,6 @@ def accountpage():
     if database.users.checkUser(username, password):
         return render_template('account.html', username=username)
     else:
-        print('Wrong')
         return redirect(url_for(('createaccountpage')))
 
 @app.route('/create_account', methods=['POST', 'GET'])

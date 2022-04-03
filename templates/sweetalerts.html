@@ -1,4 +1,4 @@
-<!-- Errors handlihg using js library called sweetalert2 -->
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
@@ -8,7 +8,11 @@
         Swal.fire({
             title:"{{ category.title() }}!",
             text: "{{ message }}",
-            icon: "{{ category }}"
+            icon: "{{ category }}",
+            background: 'rgba(0, 0, 0, 0.9)',
+            color: 'white',
+            showConfirmButton: false,
+            showCancelButton: false,
         })
 </script>
 {% endfor %}
