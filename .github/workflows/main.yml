@@ -20,7 +20,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run PyInstaller
         run: |
-          pyinstaller -w -F --add-data "templates;templates" --add-data "static;static" main.py
+          pyinstaller -F --add-data "templates;templates" --add-data "static;static" main.py
       - uses: actions/upload-artifact@v2
         with:
           name: Windows_qwiklabs
