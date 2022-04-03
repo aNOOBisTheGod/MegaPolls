@@ -7,9 +7,6 @@ import logging
 import sys
 import os
 
-
-
-
 app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.secret_key = 'you wont hack this website cause youre stupid'  
