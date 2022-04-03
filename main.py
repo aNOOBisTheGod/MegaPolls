@@ -5,10 +5,15 @@ from database import db_session
 import database.users
 import logging
 import sys
+import os
 
 
 
-app = Flask(__name__)
+if getattr(sys, 'frozen', False):
+    template_folder = os.path.join(sys._MEIPASS, 'templates')
+    app = Flask(__name__, template_folder=template_folder)
+else:
+    app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.secret_key = 'you wont hack this website cause youre stupid'  
 db_session.global_init("db/data.db")
