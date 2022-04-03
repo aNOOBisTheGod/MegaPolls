@@ -20,7 +20,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run PyInstaller
         run: |
-          pyinstaller --onefile main.py
+          pyinstaller main.py
       - uses: actions/upload-artifact@v2
         with:
           name: Windows_qwiklabs
