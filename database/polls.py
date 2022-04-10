@@ -75,6 +75,3 @@ def voteInPoll(db_sess, pollId, uid, answer_options):
     poll.whoVoted = votesList
     db_sess.commit()
     
-    
-
-    

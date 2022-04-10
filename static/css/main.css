@@ -38,7 +38,10 @@ body {
 }
 
 section {
-    padding: 20vh;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+    padding-left: 20vw;
+    padding-right: 20vw;
 }
 
 .section-title {
@@ -230,7 +233,10 @@ input[type="checkbox"]:checked + .usethis {
     background-color: #292929b4;
     backdrop-filter: blur(10px);
     display: inline-block;
-    padding: 10vh;
+    padding-right: 10vw;
+    padding-left: 10vw;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
     border-radius: 20px;
 }
 .label-load-file {
@@ -261,4 +267,10 @@ h3 {
     font-size: 25px;
     font-weight: bold;
     margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    section {
+      padding: 0;
+    }
 }
