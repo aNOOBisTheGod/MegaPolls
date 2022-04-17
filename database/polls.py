@@ -4,6 +4,7 @@ import ast
 
 
 class Poll(SqlAlchemyBase):
+    """orm poll model"""
     __tablename__ = "polls"
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
