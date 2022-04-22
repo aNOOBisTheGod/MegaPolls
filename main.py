@@ -18,7 +18,13 @@ db_sess = db_session.create_session() #creating database session
 @app.route('/', methods=['POST', 'GET'])
 def mainpage():
     """this function simply renders main page which html code stores in index.html"""
-    flash(f"Heroku deployment test", "success")
+    isFirstTime = request.cookies.get('firstTime')
+    if isFirstTime is None:
+        flash("If you will use this website then you accept the cookies we provide.", "info")
+        resp = make_response(render_template('index.html'))
+        resp.set_cookie('firstTime', '1')
+        return resp
+    # flash(f"Heroku deployment test", "success")
     return render_template('index.html')
 
 @app.route('/account', methods=['POST', 'GET'])
