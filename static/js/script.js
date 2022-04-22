@@ -39,7 +39,7 @@ class Particle {
 		ctx.save()
 		ctx.beginPath();
 		if (themeVal != 1){
-			ctx.shadowColor = 'black';
+			ctx.shadowColor = '#000';
 		} else{
 			ctx.shadowColor = '#f3214f';
 		}
@@ -141,10 +141,10 @@ function changeTheme(){
 	iconButton = document.getElementById('changeThemeButton');
 	if (themeVal != 1) {
 		changeColorsSchemeWhite()
-		iconButton.innerHTML = '<i class="bi-moon" ></i>';
+		if (iconButton != null) iconButton.innerHTML = '<i class="bi-moon" ></i>';
 	} else {
 		changeColorsSchemeBlack()
-		iconButton.innerHTML = '<i class="bi-sun" ></i>';
+		if (iconButton != null) iconButton.innerHTML = '<i class="bi-sun" ></i>';
 	}
 	
 	
@@ -169,6 +169,12 @@ function changeColorsSchemeWhite() {
 		allInputs[i].style.background = 'white';
 		}
 	}
+	let allBlurs = document.getElementsByClassName('text-blur-wrapper')
+	for (let i = 0; i < allBlurs.length; i++){
+		if (allBlurs[i].id != 'clauseInput'){
+			allBlurs[i].style.background = '#9c9b9bb4';
+		}
+	}
 }
 function changeColorsSchemeBlack() {
 	let all = document.getElementsByTagName("*");
@@ -186,6 +192,12 @@ function changeColorsSchemeBlack() {
 		if (allInputs[i].id != 'clauseInput'){
 		allInputs[i].style.color = 'white';
 		allInputs[i].style.background = 'black';
+		}
+	}
+	let allBlurs = document.getElementsByClassName('text-blur-wrapper')
+	for (let i = 0; i < allBlurs.length; i++){
+		if (allBlurs[i].id != 'clauseInput'){
+			allBlurs[i].style.background = '#292929b4';
 		}
 	}
 }
