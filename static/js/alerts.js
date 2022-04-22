@@ -19,3 +19,4 @@ function showToast(icon, title){
         
       })
 }
+

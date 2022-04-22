@@ -14,6 +14,7 @@ h1 {
 body {
     z-index: -2;
     background-color: black;
+    scroll-behavior: smooth;
 }
 
 #canvas1 {
@@ -201,14 +202,21 @@ border-radius: 50%;
 }
 
 .clauses-field{
+    position: fixed;
     border: 3px solid white;
     border-radius: 10px;
     max-height: 300px;
-    position: absolute;
     overflow-y: scroll;
-    margin-left: 40vw;
+    right: 10vw;
     padding: 30px;
 }
+@media only screen and (max-width: 1400px) {
+    .clauses-field{
+        position: static;
+        margin-bottom: 30px;
+        
+    }
+ }
 
 .swal2-icon {
      overflow:hidden
@@ -238,6 +246,7 @@ input[type="checkbox"]:checked + .usethis {
     padding-top: 10vh;
     padding-bottom: 10vh;
     border-radius: 20px;
+    box-shadow: 0px 0px 100px 0px rgba(255, 255, 255, 0.17);
 }
 .label-load-file {
     cursor: pointer;
@@ -273,4 +282,34 @@ h3 {
     section {
       padding: 0;
     }
+}
+
+#scrollBtn {
+    opacity: 0;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: default;
+    padding: 15px;
+    border-radius: 10px;
+    transition: .3s;
+    background-color: rgba(24, 24, 24, 0.5);
+    color:rgb(146, 146, 146);
+  }
+  
+#scrollBtn:hover {
+    background-color: rgba(70, 70, 70, 0.5);
+    backdrop-filter: blur(10px); /* Add a dark-grey background on hover */
+}
+
+
+.scrollBtn.buttonScrollAppear {
+    opacity: 1;
+}
+
+.swal2-icon-content {
+    overflow: hidden;
 }
