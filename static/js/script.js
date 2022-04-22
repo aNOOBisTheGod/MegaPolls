@@ -6,6 +6,8 @@ canvas.height = window.innerHeight;
 let particlesArray;
 
 
+
+
 let mouse = {
 	x: null,
 	y: null,
@@ -36,7 +38,12 @@ class Particle {
 	draw(){
 		ctx.save()
 		ctx.beginPath();
-		ctx.shadowColor = '#f3214f';
+		if (themeVal != 1){
+			ctx.shadowColor = 'black';
+		} else{
+			ctx.shadowColor = '#f3214f';
+		}
+		
 		ctx.shadowOffsetX = 0;
 		ctx.shadowOffsetY = 0;
 		ctx.shadowBlur = 50;
@@ -115,5 +122,73 @@ window.addEventListener('mouseout',
 	}
 )
 
+function getThemeVal() {
+	allCookies = document.cookie.split('; ');
+	for (let i = 0; i < allCookies.length; i++){
+		if (allCookies[i].includes('darkTheme')){
+			return parseInt(allCookies[i].split('=')[1])
+		}
+	}
+}
+var themeVal = getThemeVal();
+function changeTheme(){
+	themeVal = getThemeVal();
+	if (themeVal != 1){
+		document.cookie = 'darkTheme=1';
+	} else {
+		document.cookie = 'darkTheme=0';
+	}
+		
+	if (themeVal != 1) {
+		changeColorsSchemeWhite()
+	} else {
+		changeColorsSchemeBlack()
+	}
+	
+}
+
+function changeColorsSchemeWhite() {
+	let all = document.getElementsByTagName("*");
+	for (let i=0; i < all.length; i++) {
+	all[i].style.color = "black";
+	}
+	let canvas = document.getElementById('canvas1');
+	canvas.style.background = 'white';
+	let allButtons = document.getElementsByClassName('simple-button')
+	for (let i = 0; i < allButtons.length; i++){
+		allButtons[i].style.background = '#555'
+	}
+	let allInputs = document.getElementsByTagName('input')
+	for (let i = 0; i < allInputs.length; i++){
+		if (allInputs[i].id != 'clauseInput'){
+		allInputs[i].style.color = 'black';
+		allInputs[i].style.background = 'white';
+		}
+	}
+}
+function changeColorsSchemeBlack() {
+	let all = document.getElementsByTagName("*");
+	for (let i=0; i < all.length; i++) {
+	all[i].style.color = "white";
+	}
+	let canvas = document.getElementById('canvas1');
+	canvas.style.background = 'black';
+	let allButtons = document.getElementsByClassName('simple-button')
+	for (let i = 0; i < allButtons.length; i++){
+		allButtons[i].style.background = '#f3214f'
+	}
+	let allInputs = document.getElementsByTagName('input')
+	for (let i = 0; i < allInputs.length; i++){
+		if (allInputs[i].id != 'clauseInput'){
+		allInputs[i].style.color = 'white';
+		allInputs[i].style.background = 'black';
+		}
+	}
+}
+if (themeVal != 1) {
+	changeColorsSchemeWhite();
+}
+changeTheme();
+changeTheme();
 init();
 animate();
