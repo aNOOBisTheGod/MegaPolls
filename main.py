@@ -18,7 +18,7 @@ db_sess = db_session.create_session() #creating database session
 @app.route('/', methods=['POST', 'GET'])
 def mainpage():
     """this function simply renders main page which html code stores in index.html"""
-    # flash(f"312", "error")
+    flash(f"Heroku deployment test", "success")
     return render_template('index.html')
 
 @app.route('/account', methods=['POST', 'GET'])
