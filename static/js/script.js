@@ -138,12 +138,16 @@ function changeTheme(){
 	} else {
 		document.cookie = 'darkTheme=0';
 	}
-		
+	iconButton = document.getElementById('changeThemeButton');
 	if (themeVal != 1) {
 		changeColorsSchemeWhite()
+		iconButton.innerHTML = '<i class="bi-moon" ></i>';
 	} else {
 		changeColorsSchemeBlack()
+		iconButton.innerHTML = '<i class="bi-sun" ></i>';
 	}
+	
+	
 	
 }
 
