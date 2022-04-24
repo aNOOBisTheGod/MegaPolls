@@ -35,15 +35,15 @@ class Particle {
   draw() {
     ctx.save();
     ctx.beginPath();
-    if (themeVal != 1) {
-      ctx.shadowColor = "#000";
-    } else {
-      ctx.shadowColor = "#f3214f";
-    }
+    // if (themeVal != 1) {
+    //   ctx.shadowColor = "#000";
+    // } else {
+    //   ctx.shadowColor = "#f3214f";
+    // }
 
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
-    ctx.shadowBlur = 50;
+    // ctx.shadowOffsetX = 0;
+    // ctx.shadowOffsetY = 0;
+    // ctx.shadowBlur = 100;
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, true);
     ctx.fillStyle = "#444";
     ctx.fill();
@@ -67,11 +67,11 @@ function init() {
   particlesArray = [];
   let numberOfParticles = (canvas.height * canvas.width) / 9000;
   for (let i = 0; i < numberOfParticles; i++) {
-    let size = 10;
+    let size = 1;
     let x = Math.random() * innerWidth - size * 2 - size * 2;
     let y = Math.random() * innerHeight - size * 2 - size * 2;
-    let directionX = Math.random() * 5 - 2.5;
-    let directionY = Math.random() * 5 - 2.5;
+    let directionX = Math.random() * 2 - 1;
+    let directionY = Math.random() * 2 - 1;
     let color = "#FFF";
     particlesArray.push(
       new Particle(x, y, directionX, directionY, size, color)
@@ -99,7 +99,7 @@ function connect() {
       if (distance < (canvas.width / 7) * (canvas.height / 7)) {
         let opacity = 1 - distance / ((canvas.width / 7) * (canvas.height / 7)); //lines will appear with transition
         ctx.strokeStyle = "rgba(111, 111, 111, " + opacity + ")";
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
         ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
