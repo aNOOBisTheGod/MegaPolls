@@ -1,123 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mega Polls</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/main.css" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="icon" type="image/x-icon" href="static/images/icon.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-</head>
-<body>
+    <link rel="icon" type="image/x-icon" href="static/images/icon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
     {% include "sweetalerts.html" %}
     <header class="header">
-        <ul class='navbar'>
-            <li><a href="./">Main Page</a></li>
-            <li><a href="./create_poll">Create poll</a></li>
-            <li><a href='./create_account'>Account</a></li>
-        </ul>
-        <canvas id="canvas1" width="100%" height="100%"></canvas>
-    <h1 class="header-title">Mega Polls</h1>
+      <ul class="navbar">
+        <li><a href="./">Main Page</a></li>
+        <li><a href="./create_poll">Create poll</a></li>
+        <li><a href="./create_account">Account</a></li>
+      </ul>
+      <canvas id="canvas1" width="100%" height="100%"></canvas>
+      <h1 class="header-title">Mega Polls</h1>
     </header>
-    <button onclick="changeTheme()"id="changeThemeButton"><i class="bi-sun" ></i></button>
-    <button onclick="goToTop()" id="scrollBtn"><i class="bi-capslock"></i></button>
+    <button onclick="changeTheme()" id="changeThemeButton">
+      <i class="bi-sun"></i>
+    </button>
+    <button onclick="goToTop()" id="scrollBtn">
+      <i class="bi-capslock"></i>
+    </button>
     <section>
-        <div class="text-blur-wrapper">
-            <h2 class="section-title">About Website</h2>
-            <a class="section-text">This website provides royalty free polls creation. Make polls, share with friends and make decisions together. To create poll use
-                appbar at the top of webstie. To share with friends just copy created poll link. That's it! Really simple, isn't it? Seems like it's something like google forms,
-                but more wierd)
-            </a>
-        </div>
+      <div class="text-blur-wrapper">
+        <h2 class="section-title">About Website</h2>
+        <a class="section-text"
+          >This website provides royalty free polls creation. Make polls, share
+          with friends and make decisions together. To create poll use appbar at
+          the top of webstie. To share with friends just copy created poll link.
+          That's it! Really simple, isn't it? Seems like it's something like
+          google forms, but more wierd)
+        </a>
+      </div>
     </section>
     <section>
-        <div class="text-blur-wrapper">
+      <div class="text-blur-wrapper">
         <h2 class="section-title">What can I use website for?</h2>
-            <a class="section-text">
-                This website was created for social networks like WhatsApp or Discord, where you can't directly create a poll(like in Telegram) and send it to your friends.
-                But you can use this website, create poll, copy link and after some time view results of the poll.
-            </a>
-        </div>
+        <a class="section-text">
+          This website was created for social networks like WhatsApp or Discord,
+          where you can't directly create a poll(like in Telegram) and send it
+          to your friends. But you can use this website, create poll, copy link
+          and after some time view results of the poll.
+        </a>
+      </div>
     </section>
     <section>
-        <h1 class="insertion">Website development</h1>
-        <div class="text-blur-wrapper">
+      <h1 class="insertion">Website development</h1>
+      <div class="text-blur-wrapper">
         <h2 class="section-title">Technical task</h2>
-        
-            <a class="section-text">
-                Create website that will provide simple polls creation with local database, pretty design and simple architecture that everyone will understand.<br>
-                There will be some pages:
-                <ul class="list">
-                    <li>Main page that show information about website.</li>
-                    <li>Account creation page.</li>
-                    <li>Account page that shows some info to user and let log out account.</li>
-                    <li>Poll page itself that will show poll options to users who didn't vote and results of poll to users who voted already.</li>
-                </ul>
-                Beautiful design will be provided mostly with JS with canvas element that will create beautiful particles
-                effect, some modern CSS styles(with glowing and opacity) and also with some simple features like fonts.<br>
-            </a>
-        </div>
+
+        <a class="section-text">
+          Create website that will provide simple polls creation with local
+          database, pretty design and simple architecture that everyone will
+          understand.<br />
+          There will be some pages:
+          <ul class="list">
+            <li>Main page that show information about website.</li>
+            <li>Account creation page.</li>
+            <li>
+              Account page that shows some info to user and let log out account.
+            </li>
+            <li>
+              Poll page itself that will show poll options to users who didn't
+              vote and results of poll to users who voted already.
+            </li>
+          </ul>
+          Beautiful design will be provided mostly with JS with canvas element
+          that will create beautiful particles effect, some modern CSS
+          styles(with glowing and opacity) and also with some simple features
+          like fonts.<br />
+        </a>
+      </div>
     </section>
     <section>
-        <div class="text-blur-wrapper">
+      <div class="text-blur-wrapper">
         <h2 class="section-title">Explanation note</h2>
-            <a class="section-text">
-                This website provides simple polls creation. Here I'll tell you about website structure and technologies this website uses.<br>
-                <h3>Structure.</h3>
-                    <li>Main page where you can read information about website and navigate to other pages(main route).</li>
-                    <li>Account creation/login page where you can create account or log in it(create_account route).</li>
-                    <li>Polls creation page where... I don't need to explain what can you do there(create_poll route).</li>
-                    <li>Account page where you can log out account(account route).</li>
-                    <li>Vote in poll page where you can vote in poll and if you already voted, you can view results<br>(poll?poll=poll.id route).</li>
-                <h3>Technologies.</h3>
-                    Website uses Python 3 with flask framework as backend(mostly database management).<br>
-                    Libraries:
-                    <li>Flask(to create website itself)</li>
-                    <li>sqlalchemy(as database management)</li>
-                    <li>sqlite3(as alternative database management)</li>
-                    <li>built-in libraries(like sys, ast)</li>
-                    HTML, CSS, JS as frontend(biggest part of code).<br>
-                    Modifications:
-                    <li>Bootstrap icons for html</li>
-                    <li>sweetalert2 to make beautiful alerts</li>
-                    Heroku as hosting.<br>
-                    git as version control system.
-                <h3><a href="https://github.com/aNOOBisTheGod/MegaPolls">Here you can contribute or learn how does website works</a></h3>
-            </a>
-        </div>
+        <a class="section-text">
+          This website provides simple polls creation. Here I'll tell you about
+          website structure and technologies this website uses.<br />
+          <h3>Structure.</h3>
+          <li>
+            Main page where you can read information about website and navigate
+            to other pages(main route).
+          </li>
+          <li>
+            Account creation/login page where you can create account or log in
+            it(create_account route).
+          </li>
+          <li>
+            Polls creation page where... I don't need to explain what can you do
+            there(create_poll route).
+          </li>
+          <li>Account page where you can log out account(account route).</li>
+          <li>
+            Vote in poll page where you can vote in poll and if you already
+            voted, you can view results<br />(poll?poll=poll.id route).
+          </li>
+          <h3>Technologies.</h3>
+          Website uses Python 3 with flask framework as backend(mostly database
+          management).<br />
+          Libraries:
+          <li>Flask(to create website itself)</li>
+          <li>sqlalchemy(as database management)</li>
+          <li>sqlite3(as alternative database management)</li>
+          <li>built-in libraries(like sys, ast)</li>
+          HTML, CSS, JS as frontend(biggest part of code).<br />
+          Modifications:
+          <li>Bootstrap icons for html</li>
+          <li>sweetalert2 to make beautiful alerts</li>
+          Heroku as hosting.<br />
+          git as version control system.
+          <h3>
+            <a href="https://github.com/aNOOBisTheGod/MegaPolls"
+              >Here you can contribute or learn how does website works</a
+            >
+          </h3>
+        </a>
+      </div>
     </section>
-    <footer>
-        &copy; aNOOBis 2022, MIT LICENCE
-       
-    </footer>
-</body>
-<script type="text/javascript" src="../static/js/script.js"></script>
-<script type="text/javascript" src="../static/js/alerts.js"></script>
-<script>
-    if (window.innerWidth < 1000){
-        showToast('info', 'We strongly recommend use pc for this website')
+    <footer>&copy; aNOOBis 2022, MIT LICENCE</footer>
+  </body>
+  <script type="text/javascript" src="../static/js/script.js"></script>
+  <script type="text/javascript" src="../static/js/alerts.js"></script>
+  <script>
+    if (window.innerWidth < 1000) {
+      showToast("info", "We strongly recommend use pc for this website");
     }
     mybutton = document.getElementById("scrollBtn");
-    window.onscroll = function() {scrollFunction()};
+    window.onscroll = function () {
+      scrollFunction();
+    };
 
     function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
         mybutton.style.opacity = "1";
-        mybutton.style.cursor = "pointer"
-    } else {
+        mybutton.style.cursor = "pointer";
+      } else {
         mybutton.style.opacity = "0";
-        mybutton.style.cursor = "default"
-    }
+        mybutton.style.cursor = "default";
+      }
     }
 
     function goToTop() {
-        window.scrollTo({top: 0, behavior: 'smooth'});
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-</script>
-
+  </script>
 </html>

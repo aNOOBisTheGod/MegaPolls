@@ -1,20 +1,15 @@
-
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages
+%} {% for category, message in messages %}
 <script>
-        Swal.fire({
-            title:"{{ category.title() }}!",
-            text: "{{ message }}",
-            icon: "{{ category }}",
-            background: 'rgba(0, 0, 0, 0.9)',
-            color: 'white',
-            showConfirmButton: false,
-            showCancelButton: false,
-        })
+  Swal.fire({
+    title: "{{ category.title() }}!",
+    text: "{{ message }}",
+    icon: "{{ category }}",
+    background: "rgba(0, 0, 0, 0.9)",
+    color: "rgba(125, 125, 125, 1)",
+    showConfirmButton: false,
+    showCancelButton: false,
+  });
 </script>
-{% endfor %}
-{% endif %}
-{% endwith %}
+{% endfor %} {% endif %} {% endwith %}

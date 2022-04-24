@@ -1,91 +1,92 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    font-family: 'Roboto Mono', monospace;
-    overflow-x: hidden;
-    color: white;
-    user-select: none;
-    font-size: 20px;
-    transition: .3s;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Roboto Mono", monospace;
+  overflow-x: hidden;
+  color: white;
+  user-select: none;
+  font-size: 20px;
+  transition: 0.3s;
 }
 h1 {
-    font-size: 60px;
+  font-size: 60px;
 }
 
 body {
-    z-index: -2;
-    background-color: black;
-    scroll-behavior: smooth;
+  z-index: -2;
+  background-color: black;
+  scroll-behavior: smooth;
 }
 
 #canvas1 {
-	position:fixed;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	z-index:-1;
-	background: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: black;
 }
 
 .header {
-    text-align: center;
-    height: 100vh;
+  text-align: center;
+  height: 100vh;
 }
 
 .header-title {
-    font-size: 70px;
-    font-weight: bold;
-    margin-top: 40vh;
+  font-size: 70px;
+  font-weight: bold;
+  margin-top: 40vh;
 }
 
 section {
-    padding-top: 20vh;
-    padding-bottom: 20vh;
-    padding-left: 20vw;
-    padding-right: 20vw;
+  padding-top: 20vh;
+  padding-bottom: 20vh;
+  padding-left: 20vw;
+  padding-right: 20vw;
 }
 
 .section-title {
-    font-size: 60px;
+  font-size: 60px;
 }
 .section-text {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 footer {
-    background-color: rgba(24, 24, 24, 0.5);
-    padding: 10vh;
-    color:rgb(146, 146, 146);
-    backdrop-filter: blur(10px);
+  background-color: rgba(24, 24, 24, 0.5);
+  padding: 10vh;
+  color: rgb(146, 146, 146);
+  backdrop-filter: blur(10px);
 }
 
 .navbar {
-    font-size: 40px;
-    position: fixed;
-    list-style-type: none;
-    overflow: hidden;
+  z-index: 100;
+  font-size: 40px;
+  position: fixed;
+  list-style-type: none;
+  overflow: hidden;
 }
 
 .navbar > li {
-    float: left;
+  float: left;
 }
 
 .navbar > li a {
-    transition: .3s;
-    display: block;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+  transition: 0.3s;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 .navbar > li a:hover {
-    background-color: rgba(255, 255, 255, 0.671);
+  background-color: rgba(255, 255, 255, 0.671);
 }
 
 input {
-    background-color: black;
-    margin: 20px;
+  background-color: black;
+  margin: 20px;
 }
 
 .account-creator {
@@ -101,236 +102,238 @@ input {
 }
 
 .small-title {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 button {
-    background-color: black;
+  background-color: black;
 }
 
 .switch {
-position: relative;
-display: inline-block;
-width: 60px;
-height: 35px;
-overflow-y: hidden;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 35px;
+  overflow-y: hidden;
 }
 
 .switch input {
-opacity: 0;
-width: 0;
-height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .slider {
-position: absolute;
-cursor: pointer;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color: #ccc;
--webkit-transition: .4s;
-transition: .4s;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
-position: absolute;
-content: "";
-height: 26px;
-width: 26px;
-left: 4px;
-top: 4px;
-background-color: white;
--webkit-transition: .4s;
-transition: .4s;
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  top: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
-background-color: #f3214f;
+  background-color: #f3214f;
 }
 
 input:focus + .slider {
-box-shadow: 0 0 1px #f3214f;
+  box-shadow: 0 0 1px #f3214f;
 }
 
 input:checked + .slider:before {
--webkit-transform: translateX(26px);
--ms-transform: translateX(26px);
-transform: translateX(26px);
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
 .slider.round {
-border-radius: 34px;
+  border-radius: 34px;
 }
 
 .slider.round:before {
-border-radius: 50%;
+  border-radius: 50%;
 }
 
-.input_description{
-    font-size: 30px;
-    
+.input_description {
+  font-size: 30px;
 }
 
 .simple-button {
-    background-color: #f3214f;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    transition: .4s;
-    margin: 30px;
+  background-color: #f3214f;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  transition: 0.4s;
+  margin: 30px;
 }
 
 .simple-button:hover {
-    transform: scale(1.2);
-    box-shadow: 0px 0px 10px #f3214faf;
+  transform: scale(1.2);
+  box-shadow: 0px 0px 10px #f3214faf;
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-image: linear-gradient(45deg, rgb(255, 115, 0) 0%, rgb(255, 0, 0) 100%);
-    border-radius: 20px;    
+  background-image: linear-gradient(
+    45deg,
+    rgb(255, 115, 0) 0%,
+    rgb(255, 0, 0) 100%
+  );
+  border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: white;
-    background-image: none;
-    border-radius: 20px;    
+  background-color: white;
+  background-image: none;
+  border-radius: 20px;
 }
 
-.clauses-field{
-    position: fixed;
-    border: 3px solid white;
-    border-radius: 10px;
-    max-height: 300px;
-    overflow-y: scroll;
-    right: 10vw;
-    padding: 30px;
+.clauses-field {
+  position: fixed;
+  border: 3px solid white;
+  border-radius: 10px;
+  max-height: 300px;
+  overflow-y: scroll;
+  right: 10vw;
+  padding: 30px;
 }
 @media only screen and (max-width: 1400px) {
-    .clauses-field{
-        position: static;
-        margin-bottom: 30px;
-        
-    }
- }
+  .clauses-field {
+    position: static;
+    margin-bottom: 30px;
+  }
+}
 
 .swal2-icon {
-     overflow:hidden
+  overflow: hidden;
 }
 
 input[type="checkbox"]:checked + .usethis {
-    color: red;
-    font-size: 5rem; 
-  }
+  color: red;
+  font-size: 5rem;
+}
 
 .insertion {
-    font-size: 70px;
-    margin-bottom: 100px;
+  font-size: 70px;
+  margin-bottom: 100px;
 }
 
 .list {
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
-.text-blur-wrapper{
-    background-color: #292929b4;
-    backdrop-filter: blur(10px);
-    display: inline-block;
-    padding-right: 10vw;
-    padding-left: 10vw;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-    border-radius: 20px;
-    box-shadow: 0px 0px 100px 0px rgba(255, 255, 255, 0.17);
+.text-blur-wrapper {
+  background-color: #292929b4;
+  backdrop-filter: blur(10px);
+  display: inline-block;
+  padding-right: 10vw;
+  padding-left: 10vw;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  border-radius: 20px;
+  box-shadow: 0px 0px 100px 0px rgba(255, 255, 255, 0.17);
 }
 .label-load-file {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.help-loading{
-    display: none;
-    transition: .3s;
-    position: absolute;
-    width: auto;
-    background-color: rgba(65, 65, 65, 0.411);
-    padding: 10px;
-    border-radius: 5px;
-    backdrop-filter: blur(10px);
+.help-loading {
+  display: none;
+  transition: 0.3s;
+  position: absolute;
+  width: auto;
+  background-color: rgba(65, 65, 65, 0.411);
+  padding: 10px;
+  border-radius: 5px;
+  backdrop-filter: blur(10px);
 }
 
-.label-load-file:hover .help-loading{
-    display: flex;
-    transition: .3s;
-    
+.label-load-file:hover .help-loading {
+  display: flex;
+  transition: 0.3s;
 }
 
 div {
-    background-color: rgba(0, 0, 0, 0.671);
+  background-color: rgba(0, 0, 0, 0.671);
 }
 h3 {
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 @media only screen and (max-width: 600px) {
-    section {
-      padding: 0;
-    }
+  section {
+    padding: 0;
+  }
 }
 
 #scrollBtn {
-    opacity: 0;
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
-    border: none;
-    outline: none;
-    color: white;
-    cursor: default;
-    padding: 15px;
-    border-radius: 10px;
-    transition: .3s;
-    background-color: rgba(24, 24, 24, 0.5);
-    color:rgb(146, 146, 146);
-  }
-  
-#scrollBtn:hover {
-    background-color: rgba(70, 70, 70, 0.5);
-    backdrop-filter: blur(10px);
+  opacity: 0;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: default;
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgba(24, 24, 24, 0.5);
+  color: rgb(146, 146, 146);
+  z-index: 100;
 }
 
+#scrollBtn:hover {
+  background-color: rgba(70, 70, 70, 0.5);
+  backdrop-filter: blur(10px);
+}
 
 .scrollBtn.buttonScrollAppear {
-    opacity: 1;
+  opacity: 1;
 }
 
 .swal2-icon-content {
-    overflow: hidden;
+  overflow: hidden;
 }
 
-#changeThemeButton{
-    position: fixed;
-    top: 50px;
-    right: 50px;
-    border: none;
-    outline: none;
-    color: white;
-    cursor: default;
-    padding: 15px;
-    border-radius: 10px;
-    transition: .3s;
-    background-color: rgba(24, 24, 24, 0.5);
-    color:rgb(146, 146, 146);
+#changeThemeButton {
+  z-index: 100;
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: rgba(24, 24, 24, 0.5);
+  color: rgb(146, 146, 146);
 }
 
 #changeThemeButton:hover {
-    background-color: rgba(70, 70, 70, 0.5);
-    backdrop-filter: blur(10px);
+  background-color: rgba(70, 70, 70, 0.5);
+  backdrop-filter: blur(10px);
 }
