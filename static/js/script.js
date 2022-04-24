@@ -103,7 +103,7 @@ function connect() {
         (particlesArray[a].y - particlesArray[b].y) *
           (particlesArray[a].y - particlesArray[b].y);
       if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-        let opacity = 1 - distance / ((canvas.width / 7) * (canvas.height / 7)); //lines will appear with transition
+        let opacity = 1 - distance / ((canvas.width / 7) * (canvas.height / 7)); //lines will appear with opacity
         ctx.strokeStyle = "rgba(111, 111, 111, " + opacity + ")";
         ctx.lineWidth = 1;
         ctx.beginPath();
@@ -246,12 +246,15 @@ function keyDown(e){
     if (!isMenu){
     var div = document.createElement("div");
     div.innerHTML = "\
-    CHOOSE PAGE\
-    <div class='menuComponent' id='openMainPage' onclick=\"location.href='./';\">Main Page</div>\
-    <div class='menuComponent' id='openAccPage' onclick=\"location.href='./account';\">Account Page</div>\
-    <div class='menuComponent' id='openLoginPage' onclick=\"location.href='./create_account';\">Create Account Page</div>\
-    <div class='menuComponent' id='openLoginPage' onclick=\"location.href='./create_poll';\">Create Poll Page</div>\
-    <div class='menuComponent' id='openLoginPage' onclick=\"openPollPage()\">Poll Page</div>\
+    Choose Page\
+    <div class='menuComponent' onclick=\"location.href='./';\">Main Page</div>\
+    <div class='menuComponent' onclick=\"location.href='./account';\">Account Page</div>\
+    <div class='menuComponent' onclick=\"location.href='./create_account';\">Create Account Page</div>\
+    <div class='menuComponent' onclick=\"location.href='./create_poll';\">Create Poll Page</div>\
+    <div class='menuComponent' onclick=\"openPollPage()\">Poll Page</div>\
+    Choose Theme\
+    <div class='menuComponent'onclick=\"changeColorsSchemeBlack();\">Dark Theme</div>\
+    <div class='menuComponent'onclick=\"changeColorsSchemeWhite()\">White Theme</div>\
     ";
     div.setAttribute("class", "menu");
     var shadow = document.createElement("div");
