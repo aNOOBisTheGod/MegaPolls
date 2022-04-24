@@ -50,10 +50,10 @@ class Particle {
     ctx.restore();
   }
   update() {
-    if (this.x > canvas.width || this.x < 0) {
+    if (this.x > canvas.width + 200 || this.x < -200) {
       this.directionX = -this.directionX;
     }
-    if (this.y > canvas.height || this.y < 0) {
+    if (this.y > canvas.height + 200 || this.y < -200) {
       this.directionY = -this.directionY;
     }
 
@@ -224,7 +224,75 @@ window.addEventListener('mousemove', function(e){
     var ss = document.styleSheets[0];
     ss.insertRule('::-webkit-scrollbar-thumb {background-color: rgba(125, 125, 125, 0.5);}', ss.rules.length);
   }
+  for (let i = 0; i < particlesArray.length; i++){
+    particlesArray[i].x += Math.random() * e.movementX / 100;
+    particlesArray[i].y += Math.random() * e.movementY / 100;
+  }
 })
+theme = ''
+isMenu = false
+pollInsert = false
+pollId = ''
+function openPollPage(){
+  pollId = '';
+  var div = document.querySelector('.menu')
+  div.innerHTML = 'Insert id of poll: <div class="idInsert"><a class="inputCursor">|</a><div>';
+  pollInsert = true
+
+}
+
+function keyDown(e){
+  if (e.key == "Escape"){
+    if (!isMenu){
+    var div = document.createElement("div");
+    div.innerHTML = "\
+    CHOOSE PAGE\
+    <div class='menuComponent' id='openMainPage' onclick=\"location.href='./';\">Main Page</div>\
+    <div class='menuComponent' id='openAccPage' onclick=\"location.href='./account';\">Account Page</div>\
+    <div class='menuComponent' id='openLoginPage' onclick=\"location.href='./create_account';\">Create Account Page</div>\
+    <div class='menuComponent' id='openLoginPage' onclick=\"location.href='./create_poll';\">Create Poll Page</div>\
+    <div class='menuComponent' id='openLoginPage' onclick=\"openPollPage()\">Poll Page</div>\
+    ";
+    div.setAttribute("class", "menu");
+    var shadow = document.createElement("div");
+    shadow.setAttribute("class", "shadow");
+    this.document.body.appendChild(div);
+    this.document.body.appendChild(shadow);
+    isMenu = !isMenu
+    }
+    else {
+      document.querySelectorAll('.menu').forEach(e => e.remove());
+      document.querySelectorAll('.shadow').forEach(e => e.remove());
+      isMenu = !isMenu
+    }
+  }
+  if (pollInsert) {
+    var div = document.querySelector('.idInsert');
+    if (e.key.length == 1){
+      pollId += e.key;
+      div.innerHTML = pollId + '<a class="inputCursor">|</a>';
+    } if (e.key == "Backspace"){
+      console.log('slice')
+      pollId = pollId.slice(0, -1);
+      div.innerHTML = pollId + '<a class="inputCursor">|</a>';
+    } if (e.key == "Enter"){
+      window.open('./poll?poll=' + pollId, "_self")
+    }
+    return
+  } 
+  theme += e.key;
+  if (theme.includes('white')){
+    changeColorsSchemeWhite();
+    theme = '';
+  } else if (theme.includes('black')) {
+    changeColorsSchemeBlack();
+    theme = '';
+  }
+}
+
+window.addEventListener('keydown', (e) => keyDown(e))
+
+
 
 changeTheme();
 changeTheme();

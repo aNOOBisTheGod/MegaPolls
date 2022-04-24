@@ -82,9 +82,9 @@ footer {
   text-decoration: none;
 }
 
-.navbar > li a:hover {
+/* .navbar > li a:hover {
   background-color: rgba(255, 255, 255, 0.671);
-}
+} */
 
 input {
   background-color: black;
@@ -339,4 +339,59 @@ h3 {
 
 .clauseDiv{
   background-color: rgba(125, 125, 125, 0);
+}
+
+.menu {
+  position: fixed;
+  z-index: 1000;
+  width: 40vw;
+  height: 60vh;
+  top: 20vh;
+  left: 30vw;
+  /* background-color: rgba(0, 0, 0); */
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  padding-top: 20px;
+  line-height: 30px;
+  box-shadow: 0px 0px 10px #707070af;
+}
+
+.shadow {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  z-index: 999;
+}
+
+.menuComponent {
+  background-color: #29292900;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+.menuComponent:hover{
+  cursor: pointer;
+  background-color: rgb(125, 125, 125, 0.7);
+}
+
+.inputCursor {
+  font-size: 1em;
+  animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse {
+  0% {
+      opacity: 0;
+    }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

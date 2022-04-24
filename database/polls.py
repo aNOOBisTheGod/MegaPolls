@@ -84,6 +84,8 @@ def getPollJson(db_sess, id):
     """
     poll = retreivePoll(db_sess, id)  # getting poll from database
     """setting up poll """
+    if poll is None:
+        return None
     return {
         'title': poll.title,
         'options': ast.literal_eval(poll.options),

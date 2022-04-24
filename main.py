@@ -142,6 +142,9 @@ def pollpage():
     pollId = request.args.get('poll')  # getting poll id from args line
     # getting poll in JSON format to pass to HTML
     poll = getPollJson(db_sess, pollId)
+    if poll is None:
+        flash('Poll does not exist!', 'error')
+        return render_template('index.html')
     # checking if user has already voted
     if database.users.getUserId(username, password) in poll['whoVoted']:
         lockPoll = True  # if yes, then poll will be locked for this user
