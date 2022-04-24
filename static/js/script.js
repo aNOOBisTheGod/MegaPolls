@@ -81,6 +81,12 @@ function init() {
 
 function animate() {
   requestAnimationFrame(animate);
+  var ss = document.styleSheets[0];
+  if (isScrollVisisble > 0){
+    isScrollVisisble -= 1
+  } else {
+    ss.insertRule('::-webkit-scrollbar-thumb {background-color: transparent}', ss.rules.length)
+  }
   ctx.clearRect(0, 0, innerWidth, innerHeight);
   for (let i = 0; i < particlesArray.length; i++) {
     particlesArray[i].update();
@@ -203,6 +209,23 @@ function changeColorsSchemeBlack() {
 if (themeVal != 1) {
   changeColorsSchemeWhite();
 }
+
+isScrollVisisble = 0
+
+window.addEventListener("scroll",function() {
+  isScrollVisisble = 60
+  var ss = document.styleSheets[0];
+  ss.insertRule('::-webkit-scrollbar-thumb {background-color: rgba(125, 125, 125, 0.5);}', ss.rules.length);
+})
+
+window.addEventListener('mousemove', function(e){
+  if (window.innerWidth - e.x <= 100){
+    isScrollVisisble = 60;
+    var ss = document.styleSheets[0];
+    ss.insertRule('::-webkit-scrollbar-thumb {background-color: rgba(125, 125, 125, 0.5);}', ss.rules.length);
+  }
+})
+
 changeTheme();
 changeTheme();
 init();
