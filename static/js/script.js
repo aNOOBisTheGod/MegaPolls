@@ -161,7 +161,7 @@ function changeColorsSchemeWhite() {
   canvas.style.background = "white";
   let allButtons = document.getElementsByClassName("simple-button");
   for (let i = 0; i < allButtons.length; i++) {
-    allButtons[i].style.background = "#555";
+    allButtons[i].style.background = "#a3a3a3af";
   }
   let allInputs = document.getElementsByTagName("input");
   for (let i = 0; i < allInputs.length; i++) {
@@ -172,9 +172,8 @@ function changeColorsSchemeWhite() {
   }
   let allBlurs = document.getElementsByClassName("text-blur-wrapper");
   for (let i = 0; i < allBlurs.length; i++) {
-    if (allBlurs[i].id != "clauseInput") {
+      allBlurs[i].style.boxShadow = "0px 0px 100px 0px #0000002b";
       allBlurs[i].style.background = "#9c9b9bb4";
-    }
   }
 }
 function changeColorsSchemeBlack() {
@@ -186,7 +185,7 @@ function changeColorsSchemeBlack() {
   canvas.style.background = "black";
   let allButtons = document.getElementsByClassName("simple-button");
   for (let i = 0; i < allButtons.length; i++) {
-    allButtons[i].style.background = "#f3214f";
+    allButtons[i].style.background = "#707070af";
   }
   let allInputs = document.getElementsByTagName("input");
   for (let i = 0; i < allInputs.length; i++) {
@@ -197,6 +196,7 @@ function changeColorsSchemeBlack() {
   }
   let allBlurs = document.getElementsByClassName("text-blur-wrapper");
   for (let i = 0; i < allBlurs.length; i++) {
+    allBlurs[i].style.boxShadow = "0px 0px 100px 0px #FFFFFF2b";
     allBlurs[i].style.background = "#292929b4";
   }
 }

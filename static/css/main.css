@@ -57,7 +57,7 @@ footer {
   background-color: rgba(24, 24, 24, 0.5);
   padding: 10vh;
   color: rgb(146, 146, 146);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(4px);
 }
 
 .navbar {
@@ -174,17 +174,17 @@ input:checked + .slider:before {
 }
 
 .simple-button {
-  background-color: #f3214f;
   padding: 10px;
   border-radius: 5px;
   border: none;
   transition: 0.4s;
   margin: 30px;
+  backdrop-filter: blur(1px);
 }
 
 .simple-button:hover {
   transform: scale(1.2);
-  box-shadow: 0px 0px 10px #f3214faf;
+  box-shadow: 0px 0px 10px #707070af;
 }
 
 ::-webkit-scrollbar {
@@ -208,12 +208,13 @@ input:checked + .slider:before {
 
 .clauses-field {
   position: fixed;
-  border: 3px solid white;
   border-radius: 10px;
-  max-height: 300px;
+  max-height: 140px;
   overflow-y: scroll;
   right: 10vw;
   padding: 30px;
+  background-color: rgba(125, 125, 125, 0.4);
+  backdrop-filter: blur(3px);
 }
 @media only screen and (max-width: 1400px) {
   .clauses-field {
@@ -243,7 +244,7 @@ input[type="checkbox"]:checked + .usethis {
 
 .text-blur-wrapper {
   background-color: #292929b4;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(3px);
   display: inline-block;
   padding-right: 10vw;
   padding-left: 10vw;
@@ -336,4 +337,8 @@ h3 {
 #changeThemeButton:hover {
   background-color: rgba(70, 70, 70, 0.5);
   backdrop-filter: blur(10px);
+}
+
+.clauseDiv{
+  background-color: rgba(125, 125, 125, 0);
 }

@@ -35,7 +35,7 @@
           <input type="checkbox" name="isUnique" value="on" />
           <span class="slider round"></span> </label
         ><br />
-        <a>Insert title of voting:</a>
+        <a>Insert title of poll:</a>
 
         <input name="title" id="votingTitle" /><br />
         <button onclick="addElement()" type="button" class="simple-button">
@@ -74,6 +74,7 @@
     // }
     function addElement(context = "") {
       var div = document.createElement("div");
+      div.setAttribute("class", "clauseDiv")
       button = document.getElementById("addClause");
       var text = document.createElement("input");
       text.setAttribute("type", "text");
