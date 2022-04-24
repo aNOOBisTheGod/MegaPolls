@@ -154,9 +154,14 @@ function changeColorsSchemeWhite() {
     if (
       all[i].id != "clauseInput" &&
       all[i].id != "swal2-title" &&
-      all[i].id != "swal2-html-container"
+      all[i].id != "swal2-html-container" &&
+      !all[i].classList.contains('menuComponent') &&
+      !all[i].classList.contains('menu') &&
+      !all[i].classList.contains('swal2-icon-content')
     ) {
       all[i].style.color = "black";
+    } else {
+      all[i].style.color = "white";
     }
   }
   let canvas = document.getElementById("canvas1");
@@ -239,7 +244,7 @@ function openPollPage(){
 }
 
 function keyDown(e){
-  if (e.key == "Escape"){
+  if (e.key == "Escape" || e == "Escape"){
     if (!isMenu){
     var div = document.createElement("div");
     div.innerHTML = "\
@@ -251,11 +256,12 @@ function keyDown(e){
     <div class='menuComponent' onclick=\"openPollPage()\">Poll Page</div>\
     Choose Theme\
     <div class='menuComponent'onclick=\"changeColorsSchemeBlack();\">Dark Theme</div>\
-    <div class='menuComponent'onclick=\"changeColorsSchemeWhite()\">White Theme</div>\
+    <div class='menuComponent'onclick=\"changeColorsSchemeWhite()\">Bright Theme</div>\
     ";
     div.setAttribute("class", "menu");
     var shadow = document.createElement("div");
     shadow.setAttribute("class", "shadow");
+    shadow.setAttribute('onclick', 'keyDown("Escape")')
     this.document.body.appendChild(div);
     this.document.body.appendChild(shadow);
     isMenu = !isMenu
@@ -288,6 +294,7 @@ function keyDown(e){
     changeColorsSchemeBlack();
     theme = '';
   }
+  themeVal = getThemeVal();
 }
 
 window.addEventListener('keydown', (e) => keyDown(e))
