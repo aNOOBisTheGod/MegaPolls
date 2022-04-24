@@ -137,11 +137,6 @@ function getThemeVal() {
 var themeVal = getThemeVal();
 function changeTheme() {
   themeVal = getThemeVal();
-  if (themeVal != 1) {
-    document.cookie = "darkTheme=1";
-  } else {
-    document.cookie = "darkTheme=0";
-  }
   iconButton = document.getElementById("changeThemeButton");
   if (themeVal != 1) {
     changeColorsSchemeWhite();
@@ -153,6 +148,7 @@ function changeTheme() {
 }
 
 function changeColorsSchemeWhite() {
+  document.cookie = "darkTheme=0";
   let all = document.getElementsByTagName("*");
   for (let i = 0; i < all.length; i++) {
     if (
@@ -183,6 +179,7 @@ function changeColorsSchemeWhite() {
   }
 }
 function changeColorsSchemeBlack() {
+  document.cookie = "darkTheme=1";
   let all = document.getElementsByTagName("*");
   for (let i = 0; i < all.length; i++) {
     all[i].style.color = "white";
