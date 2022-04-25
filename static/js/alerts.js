@@ -18,3 +18,15 @@ function showToast(icon, title) {
     color: "white",
   });
 }
+
+function showAlert(icon, message){
+  Swal.fire({
+    position: 'top-end',
+    icon: icon,
+    title: message,
+    background: "rgba(0, 0, 0, 0.9)",
+    showConfirmButton: false,
+    timer: 1500,
+    color: 'white'
+  })
+}

@@ -397,3 +397,8 @@ h3 {
     opacity: 0;
   }
 }
+
+.no-scroll {
+  height: 100%;
+  overflow-y: hidden;
+}

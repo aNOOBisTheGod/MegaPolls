@@ -138,7 +138,7 @@ var themeVal = getThemeVal();
 function changeTheme() {
   themeVal = getThemeVal();
   iconButton = document.getElementById("changeThemeButton");
-  if (themeVal != 1) {
+  if (themeVal != 0) {
     changeColorsSchemeWhite();
     if (iconButton != null) iconButton.innerHTML = '<i class="bi-moon" ></i>';
   } else {
@@ -242,7 +242,41 @@ function openPollPage(){
   pollInsert = true
 
 }
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+function preventDefault(e) {
+  e.preventDefault();
+}
+function preventDefaultForScrollKeys(e) {
+  if (keys[e.keyCode]) {
+    preventDefault(e);
+    return false;
+  }
+}
+var supportsPassive = false;
+try {
+  window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+    get: function () { supportsPassive = true; } 
+  }));
+} catch(e) {}
 
+var wheelOpt = supportsPassive ? { passive: false } : false;
+var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+function disableScroll() {
+  window.addEventListener('DOMMouseScroll', preventDefault, false);
+  window.addEventListener(wheelEvent, preventDefault, wheelOpt);
+  window.addEventListener('touchmove', preventDefault, wheelOpt);
+  window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+
+function enableScroll() {
+  window.removeEventListener('DOMMouseScroll', preventDefault, false);
+  window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
+  window.removeEventListener('touchmove', preventDefault, wheelOpt);
+  window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+var menuComponentsSelected = -1;
+var isPollInsert = false;
 function keyDown(e){
   if (e.key == "Escape" || e == "Escape"){
     if (!isMenu){
@@ -265,26 +299,69 @@ function keyDown(e){
     this.document.body.appendChild(div);
     this.document.body.appendChild(shadow);
     isMenu = !isMenu
+    document.body.classList.add('.no-scroll');
+    disableScroll();
+    isPollInsert = false;
     }
     else {
       document.querySelectorAll('.menu').forEach(e => e.remove());
       document.querySelectorAll('.shadow').forEach(e => e.remove());
       isMenu = !isMenu
+      menuComponentsSelected = -1;
+      document.body.classList.remove('.no-scroll');
+      enableScroll();
+    }
+  }
+  if (isMenu && e.key == 'ArrowDown'){
+    let menuComponents = document.querySelectorAll('.menuComponent');
+    if (menuComponentsSelected < menuComponents.length - 1){
+      menuComponentsSelected++
+      menuComponents[menuComponentsSelected].style.cursor = 'pointer';
+      menuComponents[menuComponentsSelected].style.background = 'rgb(125, 125, 125, 0.7)';
+      if (menuComponentsSelected > 0){
+      menuComponents[menuComponentsSelected - 1].style.cursor = 'default';
+      menuComponents[menuComponentsSelected - 1].style.background = '#29292900'
+      }
+    }
+  }
+  if (isMenu && e.key == 'ArrowUp'){
+    let menuComponents = document.querySelectorAll('.menuComponent');
+    if (menuComponentsSelected > 0){
+      menuComponentsSelected--;
+      menuComponents[menuComponentsSelected].style.cursor = 'pointer';
+      menuComponents[menuComponentsSelected].style.background = 'rgb(125, 125, 125, 0.7)';
+      menuComponents[menuComponentsSelected + 1].style.cursor = 'default';
+      menuComponents[menuComponentsSelected + 1].style.background = '#29292900'
     }
   }
   if (pollInsert) {
+    isPollInsert = true;
     var div = document.querySelector('.idInsert');
     if (e.key.length == 1){
       pollId += e.key;
       div.innerHTML = pollId + '<a class="inputCursor">|</a>';
     } if (e.key == "Backspace"){
-      console.log('slice')
       pollId = pollId.slice(0, -1);
       div.innerHTML = pollId + '<a class="inputCursor">|</a>';
     } if (e.key == "Enter"){
       window.open('./poll?poll=' + pollId, "_self")
+      isPollInsert = false;
     }
     return
+  }
+  if (isMenu && e.key == 'Enter' && !isPollInsert){
+    try{
+      let menuComponents = document.querySelectorAll('.menuComponent');
+      menuComponents[menuComponentsSelected].click();
+    return
+    } catch(e){
+      if (!e instanceof TypeError){
+        throw e;
+      } else {
+        showAlert('info', 'Choose something or press Escape to exit menu.')
+        return;
+      }
+    }
   } 
   theme += e.key;
   if (theme.includes('white')){
@@ -301,7 +378,5 @@ window.addEventListener('keydown', (e) => keyDown(e))
 
 
 
-changeTheme();
-changeTheme();
 init();
 animate();
