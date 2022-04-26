@@ -120,7 +120,6 @@ window.addEventListener("resize", function () {
   //if user resizes window, used for canvas not to be weird
   canvas.width = innerWidth;
   canvas.height = innerHeight;
-  mouse.radius = (canvas.height / 80) * (canvas.width / 80);
 });
 
 function getThemeVal() {
@@ -214,6 +213,7 @@ if (themeVal != 1) {
 }
 
 isScrollVisisble = 0 //if scrollbar is visible then not 0
+var theme = ''; //for theme to be typed from keyboard
 
 window.addEventListener("scroll",function() {
   //appears scrollbar on scroll
