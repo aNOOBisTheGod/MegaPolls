@@ -3,13 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let particlesArray;
-
-let mouse = {
-  x: null,
-  y: null,
-  radius: (canvas.height / 80) * (canvas.width / 80),
-};
+let particlesArray; //array with all particles
 
 // window.addEventListener('click',
 // 	function(event){
@@ -24,6 +18,7 @@ let mouse = {
 // )
 
 class Particle {
+  //class of floating particle on canvas
   constructor(x, y, directionX, directionY, size) {
     this.x = x;
     this.y = y;
@@ -33,6 +28,7 @@ class Particle {
   }
 
   draw() {
+    //function that draws arr particles
     ctx.save();
     ctx.beginPath();
     // if (themeVal != 1) {
@@ -50,6 +46,7 @@ class Particle {
     ctx.restore();
   }
   update() {
+    //function that move particles
     if (this.x > canvas.width + 200 || this.x < -200) {
       this.directionX = -this.directionX;
     }
@@ -64,6 +61,7 @@ class Particle {
 }
 
 function init() {
+  //initialization of array of floating particles
   particlesArray = [];
   let numberOfParticles = (canvas.height * canvas.width) / 9000;
   for (let i = 0; i < numberOfParticles; i++) {
@@ -80,6 +78,8 @@ function init() {
 }
 
 function animate() {
+  //function that triggers every time
+  //connects particles, clears everything from canvas and checks cursor position
   requestAnimationFrame(animate);
   var ss = document.styleSheets[0];
   if (isScrollVisisble > 0){
@@ -95,6 +95,7 @@ function animate() {
 }
 
 function connect() {
+  //function that connect all particles
   for (let a = 0; a < particlesArray.length; a++) {
     for (let b = a; b < particlesArray.length; b++) {
       let distance =
@@ -116,17 +117,14 @@ function connect() {
 }
 
 window.addEventListener("resize", function () {
+  //if user resizes window, used for canvas not to be weird
   canvas.width = innerWidth;
   canvas.height = innerHeight;
   mouse.radius = (canvas.height / 80) * (canvas.width / 80);
 });
 
-window.addEventListener("mouseout", function () {
-  mouse.x = undefined;
-  mouse.y = undefined;
-});
-
 function getThemeVal() {
+  //getting value of theme from cookies
   allCookies = document.cookie.split("; ");
   for (let i = 0; i < allCookies.length; i++) {
     if (allCookies[i].includes("darkTheme")) {
@@ -136,6 +134,7 @@ function getThemeVal() {
 }
 var themeVal = getThemeVal();
 function changeTheme() {
+  //changes theme(used in button press)
   themeVal = getThemeVal();
   iconButton = document.getElementById("changeThemeButton");
   if (themeVal != 0) {
@@ -148,6 +147,7 @@ function changeTheme() {
 }
 
 function changeColorsSchemeWhite() {
+  //changes color pallete to white
   document.cookie = "darkTheme=0";
   let all = document.getElementsByTagName("*");
   for (let i = 0; i < all.length; i++) {
@@ -184,6 +184,7 @@ function changeColorsSchemeWhite() {
   }
 }
 function changeColorsSchemeBlack() {
+  //changes color pallete to black
   document.cookie = "darkTheme=1";
   let all = document.getElementsByTagName("*");
   for (let i = 0; i < all.length; i++) {
@@ -212,15 +213,17 @@ if (themeVal != 1) {
   changeColorsSchemeWhite();
 }
 
-isScrollVisisble = 0
+isScrollVisisble = 0 //if scrollbar is visible then not 0
 
 window.addEventListener("scroll",function() {
+  //appears scrollbar on scroll
   isScrollVisisble = 60
   var ss = document.styleSheets[0];
   ss.insertRule('::-webkit-scrollbar-thumb {background-color: rgba(125, 125, 125, 0.5);}', ss.rules.length);
 })
 
 window.addEventListener('mousemove', function(e){
+  //appears scrollbar on scroll and moves particles
   if (window.innerWidth - e.x <= 100){
     isScrollVisisble = 60;
     var ss = document.styleSheets[0];
@@ -231,11 +234,11 @@ window.addEventListener('mousemove', function(e){
     particlesArray[i].y += Math.random() * e.movementY / 100;
   }
 })
-theme = ''
-isMenu = false
-pollInsert = false
-pollId = ''
+isMenu = false //if menu opened
+pollInsert = false //if poll id insertion is opened 
+pollId = '' //poll id text
 function openPollPage(){
+  //opens poll page
   pollId = '';
   var div = document.querySelector('.menu')
   div.innerHTML = 'Insert id of poll: <div class="idInsert"><a class="inputCursor">|</a><div>';
@@ -258,7 +261,8 @@ try {
     get: function () { supportsPassive = true; } 
   }));
 } catch(e) {}
-
+//to enableScroll
+//functions that disable or enable scrolling effects. Used in menu
 var wheelOpt = supportsPassive ? { passive: false } : false;
 var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
@@ -275,11 +279,14 @@ function enableScroll() {
   window.removeEventListener('touchmove', preventDefault, wheelOpt);
   window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
 }
-var menuComponentsSelected = -1;
-var isPollInsert = false;
+
+var menuComponentsSelected = -1; //index of selected item in menu
 function keyDown(e){
+  //doin' manipulations with heys
   if (e.key == "Escape" || e == "Escape"){
+    //triggers on escape
     if (!isMenu){
+      //opens menu
     var div = document.createElement("div");
     div.innerHTML = "\
     Choose Page\
@@ -301,9 +308,10 @@ function keyDown(e){
     isMenu = !isMenu
     document.body.classList.add('.no-scroll');
     disableScroll();
-    isPollInsert = false;
+    pollInsert = false;
     }
     else {
+      //closes menu
       document.querySelectorAll('.menu').forEach(e => e.remove());
       document.querySelectorAll('.shadow').forEach(e => e.remove());
       isMenu = !isMenu
@@ -313,6 +321,7 @@ function keyDown(e){
     }
   }
   if (isMenu && e.key == 'ArrowDown'){
+    //selection of menu components
     let menuComponents = document.querySelectorAll('.menuComponent');
     if (menuComponentsSelected < menuComponents.length - 1){
       menuComponentsSelected++
@@ -325,6 +334,7 @@ function keyDown(e){
     }
   }
   if (isMenu && e.key == 'ArrowUp'){
+    //selection of menu components
     let menuComponents = document.querySelectorAll('.menuComponent');
     if (menuComponentsSelected > 0){
       menuComponentsSelected--;
@@ -335,7 +345,8 @@ function keyDown(e){
     }
   }
   if (pollInsert) {
-    isPollInsert = true;
+    //if opened a tab where you need to insert poll id
+    pollInsert = true;
     var div = document.querySelector('.idInsert');
     if (e.key.length == 1){
       pollId += e.key;
@@ -345,11 +356,12 @@ function keyDown(e){
       div.innerHTML = pollId + '<a class="inputCursor">|</a>';
     } if (e.key == "Enter"){
       window.open('./poll?poll=' + pollId, "_self")
-      isPollInsert = false;
+      pollInsert = false;
     }
     return
   }
-  if (isMenu && e.key == 'Enter' && !isPollInsert){
+  if (isMenu && e.key == 'Enter' && !pollInsert){
+    //shows alert when used didn't select component and clicking on components using Enter
     try{
       let menuComponents = document.querySelectorAll('.menuComponent');
       menuComponents[menuComponentsSelected].click();
@@ -374,9 +386,9 @@ function keyDown(e){
   themeVal = getThemeVal();
 }
 
-window.addEventListener('keydown', (e) => keyDown(e))
+window.addEventListener('keydown', (e) => keyDown(e)) //adding eventlistener to window
 
 
-
+//calling animation functions
 init();
 animate();

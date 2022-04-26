@@ -11,6 +11,7 @@ const Toast = Swal.mixin({
 });
 
 function showToast(icon, title) {
+  //function that shows toast(small alert)
   Toast.fire({
     icon: icon,
     title: title,
@@ -20,6 +21,7 @@ function showToast(icon, title) {
 }
 
 function showAlert(icon, message){
+  //fuinction that shows alert at the top right corner
   Swal.fire({
     position: 'top-end',
     icon: icon,
