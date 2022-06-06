@@ -1,5 +1,5 @@
 # MegaPolls
-![image](https://user-images.githubusercontent.com/69043738/161432584-d1a23751-c962-454e-8ac4-271cbebbea35.png)
+![image](https://user-images.githubusercontent.com/69043738/172132557-55a8c9ce-9889-4748-a6bc-d2e934515615.png)
 
 
 ## ТЗ
