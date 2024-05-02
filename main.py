@@ -208,4 +208,4 @@ if __name__ == "__main__":  # here porgram starts
     app.logger.addHandler(logging.StreamHandler(
         sys.stdout))  # heroku logs addition
     app.logger.setLevel(logging.ERROR)  # heroku loggs addition
-    app.run(debug=True)  # running application
+    app.run(debug=True, port=5000, host='0.0.0.0')
